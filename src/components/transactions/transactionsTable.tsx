@@ -1,4 +1,5 @@
 import type { Transaction } from "../../types/transaction";
+import TransactionButton from "./transactionsButton";
 
 interface TransactionTableBodyProps {
   transactions: Transaction[];
@@ -13,39 +14,38 @@ interface TransactionTableProps {
 
 function TransactionTableHeader() {
   return (
-    <>
-      <thead>
-        <tr>
-          <th className="transaction-table">Date</th>
-          <th className="transaction-table">Amount</th>
-          <th className="transaction-table">Currency</th>
-          <th className="transaction-table">Payment method</th>
-          <th className="transaction-table">Description</th>
-          <th className="transaction-table">Category</th>
-          <th className="transaction-table">Type</th>
-        </tr>
-      </thead>
-    </>
+    <thead>
+      <tr>
+        <th className="transaction-table">Date</th>
+        <th className="transaction-table">Amount</th>
+        <th className="transaction-table">Currency</th>
+        <th className="transaction-table">Payment method</th>
+        <th className="transaction-table">Description</th>
+        <th className="transaction-table">Category</th>
+        <th className="transaction-table">Type</th>
+        <TransactionButton bgColor="green" label="Add New"/>
+      </tr>
+    </thead>
   );
 }
 
 function TransactionTableBody({ transactions }: TransactionTableBodyProps) {
   return (
-    <>
-      <tbody>
-        {transactions.map((transaction) => (
-          <tr key={transaction.id}>
-            <td className="transaction-table">{transaction.date}</td>
-            <td className="transaction-table">{transaction.amount.toFixed(2)}</td>
-            <td className="transaction-table">{transaction.currency.code}</td>
-            <td className="transaction-table">{transaction.paymentMethod}</td>
-            <td className="transaction-table">{transaction.description}</td>
-            <td className="transaction-table">{transaction.category.name}</td>
-            <td className="transaction-table">{transaction.category.type}</td>
-          </tr>
-        ))}
-      </tbody>
-    </>
+    <tbody>
+      {transactions.map((transaction) => (
+        <tr key={transaction.id}>
+          <td className="transaction-table">{transaction.date}</td>
+          <td className="transaction-table">{transaction.amount.toFixed(2)}</td>
+          <td className="transaction-table">{transaction.currency.code}</td>
+          <td className="transaction-table">{transaction.paymentMethod}</td>
+          <td className="transaction-table">{transaction.description}</td>
+          <td className="transaction-table">{transaction.category.name}</td>
+          <td className="transaction-table">{transaction.category.type}</td>
+          <TransactionButton bgColor="blue" label="Edit"/>
+          <TransactionButton bgColor="red" label="Delete"/>
+        </tr>
+      ))}
+    </tbody>
   );
 }
 
