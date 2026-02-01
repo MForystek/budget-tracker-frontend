@@ -4,6 +4,7 @@ import HomePage from './components/home';
 import { TransactionsPage, IncomesPage, ExpensesPage } from './components/transactions/transactions';
 
 import './App.css';
+import TransactionsAdding from './components/transactions/transactionsAdding';
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/transactions" element={<TransactionsPage />} />
+        <Route path='/transactions/add' element={<TransactionsAdding />} />
         <Route path="/incomes" element={<IncomesPage />} />
         <Route path="/expenses" element={<ExpensesPage />} />
       </Routes>

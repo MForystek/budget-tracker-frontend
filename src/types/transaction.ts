@@ -1,21 +1,11 @@
-export interface Category {
-  id: number;
-  name: string;
-  type: "INCOME" | "EXPENSE";
-}
-
-export interface Currency {
-  id: number;
-  code: string;
-  name: string;
-}
+import type {CategoryType} from "./category.ts";
 
 export interface Transaction {
-  id: number;
   date: string;
   amount: number;
-  currency: Currency;
+  currencyCode: string;
   paymentMethod: "CASH" | "CARD";
   description: string;
-  category: Category;
+  categoryName: string;
+  categoryType: CategoryType;
 }

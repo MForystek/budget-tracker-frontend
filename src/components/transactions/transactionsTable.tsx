@@ -1,5 +1,5 @@
 import type { Transaction } from "../../types/transaction";
-import TransactionButton from "./transactionsButton";
+import TransactionsButton from "./transactionsButton";
 
 interface TransactionTableBodyProps {
   transactions: Transaction[];
@@ -12,7 +12,7 @@ interface TransactionTableProps {
   transactions: Transaction[];
 }
 
-function TransactionTableHeader() {
+function TransactionsTableHeader() {
   return (
     <thead>
       <tr>
@@ -23,26 +23,26 @@ function TransactionTableHeader() {
         <th className="transaction-table">Description</th>
         <th className="transaction-table">Category</th>
         <th className="transaction-table">Type</th>
-        <TransactionButton bgColor="green" label="Add New"/>
+        <th colSpan={2}><TransactionsButton bgColor="green" label="Add new" navigatePath="/transactions/add"/></th>
       </tr>
     </thead>
   );
 }
 
-function TransactionTableBody({ transactions }: TransactionTableBodyProps) {
+function TransactionsTableBody({ transactions }: TransactionTableBodyProps) {
   return (
     <tbody>
       {transactions.map((transaction) => (
-        <tr key={transaction.id}>
+        <tr key={transaction.date.toString()+transaction.amount}>
           <td className="transaction-table">{transaction.date}</td>
           <td className="transaction-table">{transaction.amount.toFixed(2)}</td>
-          <td className="transaction-table">{transaction.currency.code}</td>
+          <td className="transaction-table">{transaction.currencyCode}</td>
           <td className="transaction-table">{transaction.paymentMethod}</td>
           <td className="transaction-table">{transaction.description}</td>
-          <td className="transaction-table">{transaction.category.name}</td>
-          <td className="transaction-table">{transaction.category.type}</td>
-          <TransactionButton bgColor="blue" label="Edit"/>
-          <TransactionButton bgColor="red" label="Delete"/>
+          <td className="transaction-table">{transaction.categoryName}</td>
+          <td className="transaction-table">{transaction.categoryType}</td>
+          <td><TransactionsButton bgColor="blue" label="Edit" navigatePath="/transactions/edit"/></td>
+          <td><TransactionsButton bgColor="red" label="Delete" navigatePath="/transactions/delete"/></td>
         </tr>
       ))}
     </tbody>
@@ -57,10 +57,14 @@ export default function TransactionTable({ label, loading, loadingMessage, trans
         {loading ? (
           <div>{loadingMessage}</div>
         ) : (
-          <table style={{ borderCollapse: "collapse", width: "100%" }}>
-            <TransactionTableHeader />
-            <TransactionTableBody transactions={transactions} />
-          </table>
+          <>
+            <div style={{float: "left"}}>
+              <table style={{ borderCollapse: "collapse", width: "100%" }}>
+                <TransactionsTableHeader />
+                <TransactionsTableBody transactions={transactions} />
+              </table>
+            </div>
+          </>
         )}
       </div>
     </>

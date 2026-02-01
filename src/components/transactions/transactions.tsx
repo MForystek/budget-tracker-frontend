@@ -1,9 +1,9 @@
-import useFetchTransactions from "../../hooks/fetchTransactions";
+import useTransactions from "../../hooks/useTransactions.ts";
 import TransactionsTable from "./transactionsTable";
 
 export function IncomesPage() {
   const { loading, loadingMessage, transactions } =
-    useFetchTransactions("INCOME");
+    useTransactions("INCOME");
   return (
     <TransactionsTable
       label={"Incomes"}
@@ -16,7 +16,7 @@ export function IncomesPage() {
 
 export function ExpensesPage() {
   const { loading, loadingMessage, transactions } =
-    useFetchTransactions("EXPENSE");
+    useTransactions("EXPENSE");
   return (
     <TransactionsTable
       label={"Expenses"}
@@ -29,7 +29,7 @@ export function ExpensesPage() {
 
 export function TransactionsPage() {
   const { loading, loadingMessage, transactions } = 
-    useFetchTransactions();
+    useTransactions();
   return (
     <TransactionsTable
       label={"Transactions"}
