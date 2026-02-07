@@ -17,9 +17,9 @@ export default function TransactionsCategories(props: TransactionsCategoriesProp
                 Select category
             </option>
 
-        {props.categories.map(c => (
-            <option key={c.id} value={c.name}>
-                {c.name}
+        {props.categories.map(category => (
+            <option key={category.id} value={category.name}>
+                {category.name}
             </option>
         ))}
     </select>

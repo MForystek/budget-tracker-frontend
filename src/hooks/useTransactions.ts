@@ -20,5 +20,5 @@ export default function useTransactions(type?: CategoryType) {
             })
     }, [type]);
 
-    return { loading, loadingMessage, transactions };
+    return { transactions, loading, loadingMessage };
 }

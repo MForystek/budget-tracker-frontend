@@ -2,7 +2,7 @@ import useTransactions from "../../hooks/useTransactions.ts";
 import TransactionsTable from "./transactionsTable";
 
 export function IncomesPage() {
-  const { loading, loadingMessage, transactions } =
+  const { transactions, loading, loadingMessage } =
     useTransactions("INCOME");
   return (
     <TransactionsTable
@@ -15,7 +15,7 @@ export function IncomesPage() {
 }
 
 export function ExpensesPage() {
-  const { loading, loadingMessage, transactions } =
+  const { transactions, loading, loadingMessage } =
     useTransactions("EXPENSE");
   return (
     <TransactionsTable
@@ -28,7 +28,7 @@ export function ExpensesPage() {
 }
 
 export function TransactionsPage() {
-  const { loading, loadingMessage, transactions } = 
+  const { transactions, loading, loadingMessage } =
     useTransactions();
   return (
     <TransactionsTable
