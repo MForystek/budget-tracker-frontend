@@ -5,21 +5,24 @@ import { TransactionsPage, IncomesPage, ExpensesPage } from './components/transa
 
 import './App.css';
 import TransactionsAdding from './components/transactions/transactionsAdding';
+import Footer from "./components/footer.tsx";
 
 export default function App() {
-  return (
-    <Router>
-      <nav style={{ marginBottom: "1rem" }}>
-        <Link to="/">Home</Link> | <Link to="/transactions">Transactions</Link> | <Link to="/incomes">Incomes</Link> | <Link to="/expenses">Expenses</Link>
-      </nav>
+    return (
+        <Router>
+            <nav style={{ marginBottom: "1rem" }}>
+                <Link to="/">Home</Link> | <Link to="/transactions">Transactions</Link> | <Link to="/incomes">Incomes</Link> | <Link to="/expenses">Expenses</Link>
+            </nav>
 
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/transactions" element={<TransactionsPage />} />
-        <Route path='/transactions/add' element={<TransactionsAdding />} />
-        <Route path="/incomes" element={<IncomesPage />} />
-        <Route path="/expenses" element={<ExpensesPage />} />
-      </Routes>
-    </Router>
-  );
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/transactions" element={<TransactionsPage />} />
+                <Route path='/transactions/add' element={<TransactionsAdding />} />
+                <Route path="/incomes" element={<IncomesPage />} />
+                <Route path="/expenses" element={<ExpensesPage />} />
+            </Routes>
+
+            <Footer />
+        </Router>
+    );
 }

@@ -9,15 +9,17 @@ export default function useTransactions(type?: CategoryType) {
     const [loadingMessage, setLoadingMessage] = useState<string>("Loading...");
 
     useEffect(() => {
-        api.get<Transaction[]>("/transactions", { params: type ? { type } : {} })
-            .then(res => {
-                setTransactions(res.data);
+        const fetchTransactions = async () => {
+            try {
+                const response = await api.get<Transaction[]>("/transactions", {params: type ? {type} : {}});
+                setTransactions(response.data);
                 setLoading(false);
-            })
-            .catch(err => {
-                console.error(err);
-                setLoadingMessage("Failed to fetch transactions.")
-            })
+            } catch (error) {
+                console.error(error);
+                setLoadingMessage("Failed to fetch transactions.");
+            }
+        }
+        fetchTransactions();
     }, [type]);
 
     return { transactions, loading, loadingMessage };

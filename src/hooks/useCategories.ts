@@ -7,14 +7,16 @@ export default function useCategories(type: CategoryType) {
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        api.get<Category[]>(`/categories?type=${type}`)
-            .then(res => {
-                setCategories(res.data);
+        const fetchCategories = async () => {
+            try {
+                const response = await api.get<Category[]>(`/categories?type=${type}`);
+                setCategories(response.data);
                 setLoading(false);
-            })
-            .catch(err => {
-                console.error(err);
-            })
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchCategories();
     }, [type]);
 
     return { categories, loading };
