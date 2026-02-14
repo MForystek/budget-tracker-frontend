@@ -3,7 +3,7 @@ import {useEffect, useState} from "react";
 import type {CategoryType} from "../../types/category.ts";
 import useCategories from "../../hooks/useCategories.ts";
 import TransactionsAmount from "./transactionsAmount.tsx";
-import useAddTransactions from "../../hooks/useAddTransactions.ts";
+import useAddTransaction from "../../hooks/useAddTransaction.ts";
 import * as React from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -52,7 +52,7 @@ export default function TransactionsAdding() {
 
 
     // Submit
-    const { addTransaction, loading: submitLoading, error: submitError} = useAddTransactions();
+    const { addTransaction, loading: submitLoading, error: submitError} = useAddTransaction();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>)=> {
         e.preventDefault(); // Don't use default HTML form submission
@@ -71,6 +71,7 @@ export default function TransactionsAdding() {
         const formData = new FormData(e.currentTarget);
 
         const transactionData = {
+            id: -1,
             date: formData.get("date") as string,
             amount: Number(amount),
             currencyCode: formData.get("currencyCode") as string,

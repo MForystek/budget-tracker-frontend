@@ -1,5 +1,7 @@
 import type { Transaction } from "../../types/transaction";
 import TransactionsButton from "./transactionsButton";
+import useTransactions from "../../hooks/useTransactions.ts";
+import type {CategoryType} from "../../types/category.ts";
 
 interface TransactionTableBodyProps {
   transactions: Transaction[];
@@ -7,9 +9,7 @@ interface TransactionTableBodyProps {
 
 interface TransactionTableProps {
   label: string;
-  loading: boolean;
-  loadingMessage: string;
-  transactions: Transaction[];
+  type?: CategoryType;
 }
 
 function TransactionsTableHeader() {
@@ -33,7 +33,7 @@ function TransactionsTableBody({ transactions }: TransactionTableBodyProps) {
   return (
     <tbody>
       {transactions.map((transaction) => (
-        <tr key={transaction.date.toString()+transaction.amount}>
+        <tr key={transaction.id}>
           <td className="transaction-table">{transaction.date}</td>
           <td className="transaction-table">{transaction.amount.toFixed(2)}</td>
           <td className="transaction-table">{transaction.currencyCode}</td>
@@ -49,7 +49,9 @@ function TransactionsTableBody({ transactions }: TransactionTableBodyProps) {
   );
 }
 
-export default function TransactionTable({ label, loading, loadingMessage, transactions }: TransactionTableProps) {
+export default function TransactionTable({ label, type }: TransactionTableProps) {
+  const { transactions, loading, loadingMessage} = useTransactions(type);
+
   return (
     <>
       <h2>{label}</h2>

@@ -1,6 +1,7 @@
 import type {CategoryType} from "./category.ts";
 
 export interface Transaction {
+  id: number;
   date: string;
   amount: number;
   currencyCode: string;

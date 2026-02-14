@@ -2,7 +2,7 @@ import {useState} from "react";
 import type {Transaction} from "../types/transaction.ts";
 import api from "../services/api.ts";
 
-export default function useAddTransactions() {
+export default function useAddTransaction() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
