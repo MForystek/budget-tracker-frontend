@@ -13,7 +13,7 @@ export default function useAddTransaction() {
         try {
             await api.post("/transactions", data);
             return true;
-        } catch(err) {
+        } catch (err) {
             console.error(err);
             setError("Failed to add transaction");
             return false;

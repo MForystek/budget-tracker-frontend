@@ -14,8 +14,8 @@ export default function useTransactions(type?: CategoryType) {
                 const response = await api.get<Transaction[]>("/transactions", {params: type ? {type} : {}});
                 setTransactions(response.data);
                 setLoading(false);
-            } catch (error) {
-                console.error(error);
+            } catch (err) {
+                console.error(err);
                 setLoadingMessage("Failed to fetch transactions.");
             }
         }

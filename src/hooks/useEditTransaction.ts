@@ -1,25 +1,26 @@
 import {useState} from "react";
+import type {Transaction} from "../types/transaction.ts";
 import api from "../services/api.ts";
 
-export default function useDeleteTransaction() {
+export default function useEditTransaction() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const deleteTransaction = async (id: number) => {
+    const editTransaction = async (data: Transaction) => {
         setLoading(true);
         setError(null);
 
         try {
-            await api.delete(`/transactions/${id}`);
+            await api.put(`/transactions/${data.id}`, data);
             return true;
         } catch (err) {
-            console.error(err);
-            setError("Failed to delete transaction");
+            console.log(err);
+            setError("Failed to edit transaction");
             return false;
         } finally {
             setLoading(false);
         }
     };
 
-    return { deleteTransaction, loading, error };
+    return { editTransaction, loading, error };
 }

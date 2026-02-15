@@ -12,8 +12,8 @@ export default function useCategories(type: CategoryType) {
                 const response = await api.get<Category[]>(`/categories?type=${type}`);
                 setCategories(response.data);
                 setLoading(false);
-            } catch (error) {
-                console.error(error);
+            } catch (err) {
+                console.error(err);
             }
         };
         fetchCategories();

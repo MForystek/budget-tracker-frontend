@@ -10,8 +10,8 @@ export default function useHealthCheck(intervalSeconds: number) {
             try {
                 const response = await actuatorApi.get("/health")
                 setIsHealthy(response.status === 200);
-            } catch (error) {
-                console.log("Health check failed: ", error);
+            } catch (err) {
+                console.log("Health check failed: ", err);
                 setIsHealthy(false);
             } finally {
                 setLastChecked(new Date());
